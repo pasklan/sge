@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}SGE - Deletar marca{% endblock %}
+
+{% block content %}
+  <div class='container mt-4'>
+    <h3 class='display-6'>Deletar marca</h3>
+
+    <div class='card'>
+      <div class='card-body'>
+        <p>Tem certeza que deseja deletar a marca <strong>{{ brand.name }}</strong>?</p>
+
+        <form method='post' class='form'>
+          {% csrf_token %}
+          <button type='submit' class='btn btn-danger'>Deletar</button>
+        </form>
+
+      </div>
+    </div>
+    <a href='{% url "brand_list" %}' class='btn btn-info mt-3'>Cancelar e Voltar</a>
+  </div>
+{% endblock %}

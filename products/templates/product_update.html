@@ -1,0 +1,22 @@
+{%extends "base.html" %}
+
+{% block title %}SGE - Alterar produto{% endblock %}
+
+{% block content %}
+  <div class='container mt-4'>
+    <h3 class='display-6'>Alterar produto</h3>
+
+    <div class='card'>
+      <div class='card-body'>
+
+        <form method='post' class='form'>
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type='submit' class='btn btn-primary'>Salvar</button>
+        </form>
+
+      </div>
+    </div>
+    <a href='{% url "product_list" %}' class='btn btn-info mt-3'>Cancelar e Voltar</a>
+  </div>
+{% endblock %}

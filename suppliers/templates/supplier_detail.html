@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}SGE - Detalhes da fornecedor{% endblock %}
+
+{% block content %}
+  <div class='container mt-4'>
+    <h3 class='display-6'>Detalhes da fornecedor</h3>
+
+    <div class='card'>
+      <div class='card-body'>
+        <h3 class='card-title'>{{ supplier.name }}</h3>
+
+        <p class='card-text'>{{ supplier.description }}</p>
+
+      </div>
+
+    </div>
+    <a href='{% url "supplier_list" %}' class='btn btn-info mt-3'>Cancelar e Voltar</a>
+  </div>
+{% endblock %}

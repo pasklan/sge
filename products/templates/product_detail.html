@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}SGE - Detalhes da produto{% endblock %}
+
+{% block content %}
+  <div class='container mt-4'>
+    <h3 class='display-6'>Detalhes da produto</h3>
+
+    <div class='card'>
+      <div class='card-body'>
+        <h3 class='card-title'>{{ product.title }}</h3>
+
+        <p class='card-text'>Categoria: {{ product.category }}</p>
+        <p class='card-text'>Marca: {{ product.brand }}</p>
+        <p class='card-text'>{{ product.description }}</p>
+        <p class='card-text'>Número de série: <strong>{{ product.serie_number }}</strong></p>
+        <p class='card-text'>Preço de Custo: <strong>{{ product.cost_price }}</strong></p>
+        <p class='card-text'>Preço de Venda: <strong>{{ product.selling_price }}</strong></p>
+        <p class='card-text'>Quantidade em Estoque: <strong>{{ product.quantity }}</strong></p>
+
+      </div>
+
+    </div>
+    <a href='{% url "product_list" %}' class='btn btn-info mt-3'>Cancelar e Voltar</a>
+  </div>
+{% endblock %}
