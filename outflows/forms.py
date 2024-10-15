@@ -13,8 +13,8 @@ class OutflowForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'class': 'form-control', 'rows': '3'}),
         }
         labels = {
-            'description': 'Produto',
-            'description': 'Quantidade',
+            'product': 'Produto',
+            'quantity': 'Quantidade',
             'description': 'Descrição',
         }
 

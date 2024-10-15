@@ -43,7 +43,6 @@ class ProductListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
         context['product_metrics'] = metrics.get_product_metrics()
         return context
 
-
     class Meta:
         ordering = ('title',)
 
