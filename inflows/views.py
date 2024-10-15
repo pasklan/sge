@@ -1,12 +1,12 @@
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views.generic import ListView, CreateView, DetailView
-from .models import Inflow
-from .forms import InflowForm
+from . import models, forms, serializers
+from rest_framework import generics
 
 
 class InflowListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
-    model = Inflow
+    model = models.Inflow
     template_name = 'inflow_list.html'
     context_object_name = 'inflows'
     paginate_by = 10
@@ -22,15 +22,25 @@ class InflowListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
 
 
 class InflowCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
-    model = Inflow
+    model = models.Inflow
     template_name = 'inflow_create.html'
     context_object_name = 'inflows'
-    form_class = InflowForm
+    form_class = forms.InflowForm
     success_url = reverse_lazy('inflow_list')
     permission_required = 'inflows.add_inflow'
 
 
 class InflowDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
-    model = Inflow
+    model = models.Inflow
     template_name = 'inflow_detail.html'
     permission_required = 'inflows.view_inflow'
+
+
+class InflowCreateListAPIView(generics.ListCreateAPIView):
+    queryset = models.Inflow.objects.all()
+    serializer_class = serializers.InflowSerializer
+
+
+class InflowRetrieveAPIView(generics.RetrieveAPIView):
+    queryset = models.Inflow.objects.all()
+    serializer_class = serializers.InflowSerializer

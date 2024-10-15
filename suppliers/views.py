@@ -1,12 +1,12 @@
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
-from .models import Supplier
-from .forms import SupplierForm
+from . import models, forms, serializers
+from rest_framework import generics
 
 
 class SupplierListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
-    model = Supplier
+    model = models.Supplier
     template_name = 'supplier_list.html'
     context_object_name = 'suppliers'
     paginate_by = 5
@@ -25,32 +25,42 @@ class SupplierListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
 
 
 class SupplierCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
-    model = Supplier
+    model = models.Supplier
     template_name = 'supplier_create.html'
     context_object_name = 'supplier_create.html'
-    form_class = SupplierForm
+    form_class = forms.SupplierForm
     success_url = reverse_lazy('supplier_list')
     permission_required = 'suppliers.add_supplier'
 
 
 class SupplierDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
-    model = Supplier
+    model = models.Supplier
     template_name = 'supplier_detail.html'
     permission_required = 'suppliers.view_supplier'
 
 
 class SupplierUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
-    model = Supplier
+    model = models.Supplier
     template_name = 'supplier_update.html'
     context_object_name = 'suppliers'
-    form_class = SupplierForm
+    form_class = forms.SupplierForm
     success_url = reverse_lazy('supplier_list')
     permission_required = 'suppliers.change_supplier'
 
 
 class SupplierDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
-    model = Supplier
+    model = models.Supplier
     template_name = 'supplier_delete.html'
     context_object_name = 'suppliers'
     success_url = reverse_lazy('supplier_list')
     permission_required = 'suppliers.delete_supplier'
+
+
+class SupplierCreateListAPIView(generics.ListCreateAPIView):
+    queryset = models.Supplier.objects.all()
+    serializer_class = serializers.SupplierSerializer
+
+
+class SupplierRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = models.Supplier.objects.all()
+    serializer_class = serializers.SupplierSerializer
