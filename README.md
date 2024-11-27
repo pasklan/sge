@@ -46,3 +46,5 @@ Contribuições são bem-vindas! Para colaborar:
 1. Faça um fork do projeto.
 2. Crie um branch para sua funcionalidade ou correção
 3. Envie um Pull Request com suas alterações.
+
+## Desenvolvido por Renato Pasklan
